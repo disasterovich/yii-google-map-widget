@@ -12,7 +12,7 @@ class GoogleMap extends CWidget
     {
     public $visible=0;
     public $markers = array();
-    public $params = array('visible'=>0,'zoom'=>13,'width'=>'420px','height'=>'210px');
+    public $params = array('visible'=>true,'zoom'=>13,'width'=>'420px','height'=>'210px','lat' => 45.300, 'lng' => 34.400,);
 
     // этот метод будет вызван внутри CBaseController::beginWidget()
     public function init()

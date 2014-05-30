@@ -19,20 +19,28 @@ function initialize()
         }
     map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 
-    for( var i=0;i<google_maps_markers.length;i++ )
+    if ( google_maps_markers.length == 0)
         {
-        myLatlng = new google.maps.LatLng( google_maps_markers[i]['lat'],google_maps_markers[i]['lng'] );
-        
-        //По умолч. центрируем карту по первому маркеру
-        if (i == 0) { map.setCenter(myLatlng); }
-
-        markers[i] = new google.maps.Marker(
+        myLatlng = new google.maps.LatLng( google_maps_params['lat'],google_maps_params['lng'] );
+        map.setCenter(myLatlng); 
+        }
+    else
+        {
+        for( var i=0;i<google_maps_markers.length;i++ )
             {
-            position: myLatlng,
-            map: map,
-            title: google_maps_markers[i]['title'],
-            draggable:google_maps_markers[i]['draggable'],
-            });
+            myLatlng = new google.maps.LatLng( google_maps_markers[i]['lat'],google_maps_markers[i]['lng'] );
+
+            //По умолч. центрируем карту по первому маркеру
+            if (i == 0) { map.setCenter(myLatlng); }
+
+            markers[i] = new google.maps.Marker(
+                {
+                position: myLatlng,
+                map: map,
+                title: google_maps_markers[i]['title'],
+                draggable:google_maps_markers[i]['draggable'],
+                });
+            }        
         }
     }
 
