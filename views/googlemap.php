@@ -1,1 +1,1 @@
-<div id="map-canvas" style="width:<?php echo ($params['width']); ?>; height:<?php echo ($params['height']); ?>"></div>
+<div id="map-canvas" class="<?=$params['class']?>"></div>

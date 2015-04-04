@@ -12,11 +12,21 @@ class GoogleMap extends CWidget
     {
     public $visible=0;
     public $markers = array();
-    public $params = array('visible'=>true,'zoom'=>13,'width'=>'420px','height'=>'210px','lat' => 45.300, 'lng' => 34.400,);
+    public $params = array();
+    public $default_params = array('visible'=>true,'zoom'=>13,'minzoom'=>8,'width'=>'420px','height'=>'210px','lat' => 45.300, 'lng' => 34.400,);
 
     // этот метод будет вызван внутри CBaseController::beginWidget()
     public function init()
         {
+        //Дополним значениями по умолч.
+        foreach ($this->default_params as $k=>$v)
+            {
+            if ( !isset($this->params[$k]) )
+                {
+                $this->params[$k] = $v;
+                }
+            }
+        
         Yii::app()->clientScript->registerScript(0,
                 'google_maps_markers='.CJSON::encode($this->markers).';'.
                 'google_maps_params='.CJSON::encode($this->params).';',
